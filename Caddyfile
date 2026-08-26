@@ -1,0 +1,12 @@
+# MataElang — Caddy sits in front of uvicorn.
+# /tiles/* is served straight from disk with Range support (120 GB PMTiles never touches Python).
+# Everything else is proxied to FastAPI.
+:8080 {
+    handle_path /tiles/* {
+        root * ./data/tiles
+        file_server
+    }
+    handle {
+        reverse_proxy localhost:8000
+    }
+}

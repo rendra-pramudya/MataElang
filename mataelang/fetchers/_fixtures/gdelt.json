@@ -1,0 +1,67 @@
+[
+  {
+    "id": "gdelt:fx-1201",
+    "type": "conflict",
+    "ts_offset_s": -900,
+    "lat": 48.45,
+    "lon": 35.05,
+    "severity": 5,
+    "title": "Fight: Military → Civilian (Dnipro, Ukraine)",
+    "source": "GDELT",
+    "url": "https://example.org/gdelt-fixture-1",
+    "ttl": 21600,
+    "payload": {"goldstein": -10.0, "quadclass": 4, "event_code": "193", "event_root": "19", "num_mentions": 42, "geo_type": 4, "geo_name": "Dnipro, Ukraine", "geo_country": "UP"}
+  },
+  {
+    "id": "gdelt:fx-1202",
+    "type": "conflict",
+    "ts_offset_s": -900,
+    "lat": 31.5,
+    "lon": 34.47,
+    "severity": 4,
+    "title": "Assault: Israel → Palestine (Gaza)",
+    "source": "GDELT",
+    "url": "https://example.org/gdelt-fixture-2",
+    "ttl": 21600,
+    "payload": {"goldstein": -8.0, "quadclass": 4, "event_code": "180", "event_root": "18", "num_mentions": 61, "geo_type": 4, "geo_name": "Gaza", "geo_country": "GZ"}
+  },
+  {
+    "id": "gdelt:fx-1203",
+    "type": "conflict",
+    "ts_offset_s": -1800,
+    "lat": 15.6,
+    "lon": 32.5,
+    "severity": 3,
+    "title": "Coerce: Rapid Support Forces → Civilian (Khartoum, Sudan)",
+    "source": "GDELT",
+    "url": "https://example.org/gdelt-fixture-3",
+    "ttl": 21600,
+    "payload": {"goldstein": -6.0, "quadclass": 4, "event_code": "171", "event_root": "17", "num_mentions": 12, "geo_type": 4, "geo_name": "Khartoum, Sudan", "geo_country": "SU"}
+  },
+  {
+    "id": "gdelt:fx-1204",
+    "type": "conflict",
+    "ts_offset_s": -2700,
+    "lat": 19.43,
+    "lon": -99.13,
+    "severity": 2,
+    "title": "Protest: Student → Government (Mexico City, Mexico)",
+    "source": "GDELT",
+    "url": "https://example.org/gdelt-fixture-4",
+    "ttl": 21600,
+    "payload": {"goldstein": -4.5, "quadclass": 3, "event_code": "141", "event_root": "14", "num_mentions": 8, "geo_type": 4, "geo_name": "Mexico City, Mexico", "geo_country": "MX"}
+  },
+  {
+    "id": "gdelt:fx-1205",
+    "type": "conflict",
+    "ts_offset_s": -3600,
+    "lat": -6.2,
+    "lon": 106.85,
+    "severity": 1,
+    "title": "Threaten: Indonesia → Malaysia (Jakarta, Indonesia)",
+    "source": "GDELT",
+    "url": "https://example.org/gdelt-fixture-5",
+    "ttl": 21600,
+    "payload": {"goldstein": -2.5, "quadclass": 3, "event_code": "130", "event_root": "13", "num_mentions": 5, "geo_type": 4, "geo_name": "Jakarta, Indonesia", "geo_country": "ID"}
+  }
+]

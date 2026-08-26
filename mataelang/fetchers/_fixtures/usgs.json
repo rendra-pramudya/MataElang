@@ -1,0 +1,54 @@
+[
+  {
+    "id": "usgs:fx-us7000q1a1",
+    "type": "quake",
+    "ts_offset_s": -1800,
+    "lat": -6.9,
+    "lon": 107.6,
+    "severity": 3,
+    "title": "M5.4 — 12 km SSE of Bandung, Indonesia",
+    "source": "USGS",
+    "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000q1a1",
+    "ttl": 259200,
+    "payload": {"mag": 5.4, "depth_km": 10.0, "tsunami": 0, "alert": "green", "status": "reviewed"}
+  },
+  {
+    "id": "usgs:fx-us7000q1a2",
+    "type": "quake",
+    "ts_offset_s": -5400,
+    "lat": 38.3,
+    "lon": 142.4,
+    "severity": 4,
+    "title": "M6.1 — 88 km E of Ishinomaki, Japan",
+    "source": "USGS",
+    "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000q1a2",
+    "ttl": 259200,
+    "payload": {"mag": 6.1, "depth_km": 35.2, "tsunami": 0, "alert": "green", "status": "reviewed"}
+  },
+  {
+    "id": "usgs:fx-us7000q1a3",
+    "type": "quake",
+    "ts_offset_s": -600,
+    "lat": 36.1,
+    "lon": -117.9,
+    "severity": 0,
+    "title": "M2.3 — 14 km ENE of Little Lake, CA",
+    "source": "USGS",
+    "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000q1a3",
+    "ttl": 259200,
+    "payload": {"mag": 2.3, "depth_km": 4.1, "tsunami": 0, "alert": null, "status": "automatic"}
+  },
+  {
+    "id": "usgs:fx-ttl30",
+    "type": "quake",
+    "ts_offset_s": 0,
+    "lat": -8.4,
+    "lon": 115.2,
+    "severity": 1,
+    "title": "M3.2 — 20 km N of Denpasar, Indonesia (expires in 30 s — acceptance test §7.7)",
+    "source": "USGS",
+    "url": null,
+    "ttl": 30,
+    "payload": {"mag": 3.2, "depth_km": 60.0, "tsunami": 0}
+  }
+]

@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MataElang</title>
+  <link rel="stylesheet" href="/vendor/maplibre-gl.css">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div id="map" role="application" aria-label="World monitor map"></div>
+
+  <header id="brand" aria-live="polite">
+    <span id="conn" class="dot" data-state="connecting" title="connecting"></span>
+    <span class="name">MATAELANG</span>
+    <span id="conn-label" class="conn-label">connecting</span>
+  </header>
+
+  <footer id="status" aria-label="Source status"></footer>
+
+  <script type="module" src="/app.js"></script>
+</body>
+</html>
