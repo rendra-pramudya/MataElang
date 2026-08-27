@@ -11,6 +11,9 @@ dependencies = [
     "apscheduler>=3.10,<4",
     "pydantic>=2.7",
     "pydantic-settings>=2.3",
+    # Phase 1 heat map only. Hex binning keeps density comparable across latitudes; square
+    # degree-bins make Norway look like a war zone. GeoPandas/Shapely stay in Phase 2.
+    "h3>=4.1",
 ]
 
 [dependency-groups]
@@ -43,5 +46,10 @@ testpaths = ["tests"]
 [tool.mypy]
 python_version = "3.12"
 strict = true
-files = ["mataelang/models.py", "mataelang/bus.py"]
+files = ["mataelang/models.py", "mataelang/bus.py", "mataelang/analysis/heat.py"]
 plugins = ["pydantic.mypy"]
+
+[[tool.mypy.overrides]]
+# h3 ships no py.typed marker. Its two call sites in heat.py are covered by tests instead.
+module = ["h3.*"]
+ignore_missing_imports = true

@@ -28,6 +28,8 @@ from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import TypeAdapter, ValidationError
 
+from .analysis import bin_events
+from .analysis.heat import clamp_resolution
 from .bus import Bus
 from .config import Settings, load_settings
 from .db import Database
@@ -70,6 +72,16 @@ def configure_logging(level: int = logging.INFO) -> None:
         lg.propagate = False
     logging.getLogger("apscheduler").setLevel(logging.WARNING)
     logging.getLogger("httpx").setLevel(logging.WARNING)
+
+
+def _parse_bbox(bbox: str | None) -> tuple[float, float, float, float] | None:
+    if not bbox:
+        return None
+    try:
+        w, s, e, n = (float(x) for x in bbox.split(","))
+    except ValueError as exc:
+        raise HTTPException(400, "bbox must be west,south,east,north") from exc
+    return (w, s, e, n)
 
 
 def create_app(settings: Settings | None = None, *, start_scheduler: bool = True) -> FastAPI:
@@ -137,16 +149,36 @@ def create_app(settings: Settings | None = None, *, start_scheduler: bool = True
         bbox: str | None = Query(default=None, description="west,south,east,north"),
         limit: int = Query(default=1000, ge=1, le=10000),
     ) -> JSONResponse:
-        box: tuple[float, float, float, float] | None = None
-        if bbox:
-            try:
-                w, s, e, n = (float(x) for x in bbox.split(","))
-            except ValueError as exc:
-                raise HTTPException(400, "bbox must be west,south,east,north") from exc
-            box = (w, s, e, n)
+        box = _parse_bbox(bbox)
         db: Database = request.app.state.db
         events = await db.query(type_=type, since=since, bbox=box, limit=limit)
         return JSONResponse({"events": [e.model_dump(mode="json") for e in events]})
+
+    @app.get("/api/heat")
+    async def api_heat(
+        request: Request,
+        type: str = "conflict",  # noqa: A002 — matches /api/events' query name
+        res: int | None = None,
+        since: datetime | None = None,
+        bbox: str | None = Query(default=None, description="west,south,east,north"),
+    ) -> JSONResponse:
+        """H3-binned density (phase-1 §5.2). Aggregates reporting, not ground truth."""
+        cfg: Settings = request.app.state.settings
+        box = _parse_bbox(bbox)
+        resolution = clamp_resolution(
+            cfg.heat_default_resolution if res is None else res, cfg.heat_max_resolution
+        )
+        db: Database = request.app.state.db
+        events = await db.query(type_=type, since=since, bbox=box, limit=cfg.heat_query_limit)
+        cells = await asyncio.to_thread(bin_events, events, resolution)
+        return JSONResponse(
+            {
+                "type": type,
+                "resolution": resolution,
+                "events": len(events),
+                "cells": [c.to_dict() for c in cells],
+            }
+        )
 
     @app.get("/api/boundaries")
     async def api_boundaries(request: Request) -> JSONResponse:
