@@ -1,0 +1,17 @@
+# Normalise text files to LF in the repository; check out per platform.
+* text=auto
+
+# Windows launchers must arrive with CRLF: batch parsing of labels and goto is
+# fragile with LF endings.
+*.bat text eol=crlf
+*.cmd text eol=crlf
+
+# Shell scripts must stay LF even when checked out on Windows.
+*.sh text eol=lf
+
+# Binary assets - never touch these.
+*.pbf binary
+*.pmtiles binary
+*.png binary
+*.jpg binary
+*.ico binary

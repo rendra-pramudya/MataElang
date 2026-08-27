@@ -32,6 +32,19 @@ uv run uvicorn mataelang.main:app --port 8000
 # → http://localhost:8080
 ```
 
+On Windows, `scripts\start.bat` handles the setup and launch — it checks for `uv`, seeds `.env`
+from `.env.example` on first run, syncs dependencies and starts uvicorn. Double-click it, or:
+
+```bat
+scripts\start.bat              :: mode from .env, port 8000
+scripts\start.bat fixture      :: force fixture mode
+scripts\start.bat fixture 8001 :: ...on another port
+```
+
+It starts FastAPI only — run `caddy run` alongside it for the basemap, then use
+http://localhost:8080. It binds to `127.0.0.1`: MataElang has no authentication and is not
+meant to be reachable from your network.
+
 Labels ship with a Latin/Cyrillic/Greek glyph subset in `web/fonts/`. For every script run
 `scripts/fetch-fonts.sh` once.
 
