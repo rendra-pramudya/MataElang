@@ -1,0 +1,71 @@
+[
+  {
+    "id": "openmeteo:jakarta",
+    "type": "weather",
+    "ts_offset_s": -900,
+    "lat": -6.21,
+    "lon": 106.85,
+    "severity": 4,
+    "title": "Jakarta — thunderstorm, gusts 121 km/h, 44.0 mm/h",
+    "source": "Open-Meteo",
+    "url": null,
+    "ttl": 3600,
+    "payload": {
+      "place": "Jakarta",
+      "temperature_c": 25.4,
+      "humidity_pct": 94.0,
+      "precip_mm_h": 44.0,
+      "gust_kmh": 121.0,
+      "weather_code": 95,
+      "weather_text": "thunderstorm",
+      "grid_lat": -6.2,
+      "grid_lon": 106.8
+    }
+  },
+  {
+    "id": "openmeteo:manila",
+    "type": "weather",
+    "ts_offset_s": -600,
+    "lat": 14.6,
+    "lon": 120.98,
+    "severity": 2,
+    "title": "Manila — heavy rain, gusts 66 km/h, 12.5 mm/h",
+    "source": "Open-Meteo",
+    "url": null,
+    "ttl": 3600,
+    "payload": {
+      "place": "Manila",
+      "temperature_c": 27.1,
+      "humidity_pct": 88.0,
+      "precip_mm_h": 12.5,
+      "gust_kmh": 66.0,
+      "weather_code": 65,
+      "weather_text": "heavy rain",
+      "grid_lat": 14.6,
+      "grid_lon": 121.0
+    }
+  },
+  {
+    "id": "openmeteo:tokyo",
+    "type": "weather",
+    "ts_offset_s": -1200,
+    "lat": 35.68,
+    "lon": 139.69,
+    "severity": 1,
+    "title": "Tokyo — fog, gusts 44 km/h",
+    "source": "Open-Meteo",
+    "url": null,
+    "ttl": 3600,
+    "payload": {
+      "place": "Tokyo",
+      "temperature_c": 19.8,
+      "humidity_pct": 97.0,
+      "precip_mm_h": 0.0,
+      "gust_kmh": 44.0,
+      "weather_code": 45,
+      "weather_text": "fog",
+      "grid_lat": 35.7,
+      "grid_lon": 139.7
+    }
+  }
+]

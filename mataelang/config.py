@@ -31,6 +31,28 @@ class Settings(BaseSettings):
     gdelt_min_goldstein: float = -3.0  # keep events at or below this (more negative = worse)
     gdelt_max_events: int = 400  # per 15-min file, most-mentioned first
 
+    # Open-Meteo — endpoint confirmed 2026-08-27. Free, no key. One call covers every point.
+    openmeteo_url: str = "https://api.open-meteo.com/v1/forecast"
+    # "name,lat,lon" separated by ";". These are watch points, not coverage — phase-1 §3.1.
+    openmeteo_points: str = (
+        "Jakarta,-6.21,106.85;Surabaya,-7.25,112.75;Medan,3.59,98.67;"
+        "Makassar,-5.15,119.43;Banda Aceh,5.55,95.32;Jayapura,-2.53,140.72;"
+        "Singapore,1.35,103.82;Manila,14.60,120.98;Tokyo,35.68,139.69;Sydney,-33.87,151.21"
+    )
+
+    # RSS — publisher terms vary per feed; keep the default list short and replaceable.
+    rss_feeds: str = (
+        "https://feeds.bbci.co.uk/news/world/rss.xml;"
+        "https://www.aljazeera.com/xml/rss/all.xml;"
+        "https://rss.dw.com/rdf/rss-en-world"
+    )
+    rss_max_items_per_feed: int = 60
+
+    # Heat map (phase-1 §5). Resolution 3 is ~59 km edge — country-region scale.
+    heat_default_resolution: int = 3
+    heat_max_resolution: int = 7
+    heat_query_limit: int = 10000
+
     # Expiry sweep / status cadence, seconds. Spec: 60 and 30.
     sweep_interval_s: int = 60
     status_interval_s: int = 30
