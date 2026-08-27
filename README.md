@@ -4,10 +4,16 @@
 basemap, with live event layers fed by free/open APIs only. Runs on your own hardware, for your
 own situational awareness. Read-only by design.
 
-This is **Phase 0 — the spine**: local PMTiles basemap, USGS earthquakes and GDELT conflict
-events flowing through one normalised contract to live map markers, with history in SQLite.
-See [`CLAUDE.md`](CLAUDE.md) for the guardrails and [`docs/phase-0-spine.md`](docs/phase-0-spine.md)
-for the build brief and acceptance test.
+**Phase 0 — the spine** (tagged `v0.1.0-spine`): local PMTiles basemap, USGS earthquakes and
+GDELT conflict events flowing through one normalised contract to live map markers, with history
+in SQLite.
+
+**Phase 1 — layers** (in progress): Open-Meteo severe weather and RSS news through the same
+contract, an H3 conflict-density heat map over the accumulated history, time-decay on every
+marker, and a layer toggle.
+
+See [`CLAUDE.md`](CLAUDE.md) for the guardrails, [`docs/phase-0-spine.md`](docs/phase-0-spine.md)
+and [`docs/phase-1-layers.md`](docs/phase-1-layers.md) for the build briefs and acceptance tests.
 
 ## Run it
 
@@ -44,7 +50,8 @@ Useful while walking the acceptance test:
 | `GET /healthz` | live event count and connected clients |
 | `GET /api/status` | per-source `last_ok` / `last_error` / `count` |
 | `GET /api/events?type=quake&since=2026-08-01T00:00:00Z&bbox=95,-11,141,6` | history from SQLite |
-| `POST /api/fetch/usgs` | run a fetcher now (dedupe test §7.5) |
+| `POST /api/fetch/usgs` | run a fetcher now (dedupe test §7.5); also `gdelt`, `openmeteo`, `rss` |
+| `GET /api/heat?type=conflict&res=3` | H3-binned reported-conflict density |
 | `window.mataelang.counts()` in the browser console | marker count per layer |
 
 ## Layout
@@ -61,6 +68,21 @@ docs/               phase briefs
 
 - **USGS** earthquake GeoJSON feeds — public domain. Polled every 2 min with a descriptive User-Agent.
 - **GDELT 2.0** event stream — free, attribution shown on every marker. One 15-min export per poll.
+- **Open-Meteo** forecast API — free for non-commercial use, no key. Every watch point is covered
+  by a single call every 10 min, well inside fair use.
+- **RSS/Atom** feeds — terms belong to each publisher. The defaults are a starting point; swap
+  them in `.env` for whatever you actually read.
 - **OpenStreetMap** via Protomaps planet PMTiles served from local disk. Never `tile.openstreetmap.org`.
 
-Endpoints were last confirmed 2026-08-26; the date is noted in each fetcher's docstring.
+Endpoints were last confirmed 2026-08-27; the date is noted in each fetcher's docstring.
+
+## What is inferred, and what is measured
+
+MataElang labels its guesses (`CLAUDE.md` rule 5):
+
+- **News locations are inferred** from the headline against a bundled offline gazetteer. A city
+  match is high confidence; a country match is a centroid placeholder, drawn hollow, and its
+  popup says so. Items that match nothing are dropped rather than parked at 0,0.
+- **The heat map shows reported density**, not conflict. It aggregates GDELT, which is media
+  coverage — a dense cell means dense reporting.
+- **Weather is watch points, not coverage.** Severe conditions appear only where you pointed it.
