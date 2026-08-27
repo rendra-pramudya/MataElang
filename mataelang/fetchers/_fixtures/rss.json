@@ -1,0 +1,74 @@
+[
+  {
+    "id": "rss:fx0000000000001",
+    "type": "news",
+    "ts_offset_s": -1200,
+    "lat": 50.45,
+    "lon": 30.52,
+    "severity": 3,
+    "title": "Shelling reported on the eastern edge of Kyiv, officials say",
+    "source": "BBC News - World",
+    "url": "https://example.org/news/1",
+    "ttl": 43200,
+    "payload": {
+      "feed": "https://feeds.bbci.co.uk/news/world/rss.xml",
+      "summary": "Local officials reported overnight shelling; casualty figures are not yet confirmed.",
+      "geocode": {"match": "Kyiv", "kind": "city", "confidence": "high"},
+      "ts_source": "feed"
+    }
+  },
+  {
+    "id": "rss:fx0000000000002",
+    "type": "news",
+    "ts_offset_s": -3000,
+    "lat": 12.86,
+    "lon": 30.22,
+    "severity": 2,
+    "title": "Aid convoys stalled as evacuation routes close across Sudan",
+    "source": "Al Jazeera",
+    "url": "https://example.org/news/2",
+    "ttl": 43200,
+    "payload": {
+      "feed": "https://www.aljazeera.com/xml/rss/all.xml",
+      "summary": "Agencies say access has narrowed sharply over the past week.",
+      "geocode": {"match": "Sudan", "kind": "country", "confidence": "low"},
+      "ts_source": "feed"
+    }
+  },
+  {
+    "id": "rss:fx0000000000003",
+    "type": "news",
+    "ts_offset_s": -600,
+    "lat": -6.21,
+    "lon": 106.85,
+    "severity": 1,
+    "title": "Jakarta transport authority extends late-night rail service",
+    "source": "DW News",
+    "url": "https://example.org/news/3",
+    "ttl": 43200,
+    "payload": {
+      "feed": "https://rss.dw.com/rdf/rss-en-world",
+      "summary": "The trial runs through the end of the quarter.",
+      "geocode": {"match": "Jakarta", "kind": "city", "confidence": "high"},
+      "ts_source": "feed"
+    }
+  },
+  {
+    "id": "rss:fx0000000000004",
+    "type": "news",
+    "ts_offset_s": -21600,
+    "lat": 15.55,
+    "lon": 48.52,
+    "severity": 4,
+    "title": "Offensive reported in northern Yemen as talks stall",
+    "source": "Al Jazeera",
+    "url": "https://example.org/news/4",
+    "ttl": 43200,
+    "payload": {
+      "feed": "https://www.aljazeera.com/xml/rss/all.xml",
+      "summary": "Mediators say the latest round produced no agreement. Older item — shows time-decay (phase-1 §6).",
+      "geocode": {"match": "Yemen", "kind": "country", "confidence": "low"},
+      "ts_source": "feed"
+    }
+  }
+]

@@ -3,9 +3,10 @@
 from .base import FetchContext, Fetcher, FetchError
 from .gdelt import GdeltFetcher
 from .openmeteo import OpenMeteoFetcher
+from .rss import RssFetcher
 from .usgs import UsgsFetcher
 
-ALL: list[Fetcher] = [UsgsFetcher(), GdeltFetcher(), OpenMeteoFetcher()]
+ALL: list[Fetcher] = [UsgsFetcher(), GdeltFetcher(), OpenMeteoFetcher(), RssFetcher()]
 
 __all__ = [
     "ALL",
@@ -14,5 +15,6 @@ __all__ = [
     "Fetcher",
     "GdeltFetcher",
     "OpenMeteoFetcher",
+    "RssFetcher",
     "UsgsFetcher",
 ]
